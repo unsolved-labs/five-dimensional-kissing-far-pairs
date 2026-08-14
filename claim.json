@@ -1,0 +1,22 @@
+{
+  "release": "R008",
+  "title": "Five-dimensional kissing-code far-pair constraints",
+  "ambientSphere": "S^4",
+  "cardinality": 41,
+  "pairwiseInnerProductUpperBound": "1/2",
+  "claims": {
+    "strongPairThreshold": "-442/625",
+    "strongPairCountLowerBound": 2,
+    "moderatePairThreshold": "-133/200",
+    "moderatePairCountLowerBound": 10,
+    "moderateFarGraphTriangleFree": true,
+    "moderateFarGraphMaximumDegreeUpperBound": 9,
+    "moderateFarGraphIncidentVerticesLowerBound": 7,
+    "incidentVertexSpanDimensionLowerBound": 3,
+    "vertexDisjointStrongAndModeratePairExists": true,
+    "differenceAxisAbsoluteInnerProductUpperBoundStrict": "779/1000"
+  },
+  "scope": "Structural constraints on hypothetical 41-point kissing codes in five dimensions; not a proof that tau_5 = 40.",
+  "verifier": "python verifier.py",
+  "externalReview": "pending"
+}
