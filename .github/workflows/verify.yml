@@ -104,9 +104,11 @@ jobs:
           lint: false
           use-mathlib-cache: true
           build-args: '--wfail'
-          leanchecker: true
+          leanchecker: false
           nanoda: true
           nanoda-allow-sorry: false
+      - name: Replay R008 with Lean's environment checker
+        run: lake env leanchecker R008
       - name: Reject proof placeholders and native-decision trust
         run: |
           if grep -RInE --include='*.lean' '^[[:space:]]*(by[[:space:]]+)?(sorry|admit|axiom|native_decide)\b' R008 R008.lean; then
