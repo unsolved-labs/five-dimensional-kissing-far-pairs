@@ -1,0 +1,11 @@
+{
+  "sourceDateEpoch": 1786691080,
+  "buildCommand": "SOURCE_DATE_EPOCH=1786691080 FORCE_SOURCE_DATE=1 latexmk -pdf -interaction=nonstopmode -halt-on-error r008_far_pair_constraints.tex",
+  "sourceGitBlobSha": {
+    "r008_far_pair_constraints.tex": "f59c9f874b6be38b98a12db55bebba80b46e954d",
+    "references.bib": "104e40068b7dc992fe0bb21193039154f1ae352d"
+  },
+  "ciReferenceEnvironment": "GitHub Actions ubuntu-24.04 with TeX Live 2023 packages installed by .github/workflows/verify.yml",
+  "pdfPolicy": "The public LaTeX source is canonical. CI must compile a valid PDF and publish it as a workflow artifact; PDF bytes are not required to be identical across TeX distributions.",
+  "hashPolicy": "Manuscript source integrity is checked by recomputing the content-addressed Git blob object ID from each file's bytes."
+}

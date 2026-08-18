@@ -16,7 +16,24 @@
     "vertexDisjointStrongAndModeratePairExists": true,
     "differenceAxisAbsoluteInnerProductUpperBoundStrict": "779/1000"
   },
-  "scope": "Structural constraints on hypothetical 41-point kissing codes in five dimensions; not a proof that tau_5 = 40.",
-  "verifier": "python verifier.py",
+  "scope": "Structural constraints on hypothetical 41-point kissing codes in five dimensions; not a proof that tau_5 = 40 and not an improvement of the proved upper bound 44.",
+  "verification": {
+    "releaseCommand": "python verify_release.py",
+    "primary": "python verifier.py",
+    "independent": "python independent_verifier.py",
+    "primaryMethod": "SymPy exact rational arithmetic and exact Sturm root counting",
+    "independentMethod": "Python standard-library Fraction arithmetic with independently implemented Gegenbauer recurrence, polynomial arithmetic, and Sturm root counting",
+    "proofAssistant": "not claimed"
+  },
+  "manuscript": {
+    "source": "manuscript/r008_far_pair_constraints.tex",
+    "build": "make manuscript",
+    "integrity": "manuscript/build-metadata.json",
+    "pdfPublication": "GitHub Actions artifact from the manuscript job"
+  },
+  "statementAudit": "STATEMENT_AUDIT.md",
+  "sourceAudit": "SOURCE_AUDIT.md",
+  "researchGeneration": "frontier AI",
+  "publisher": "Unsolved Labs",
   "externalReview": "pending"
 }

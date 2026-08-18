@@ -1,0 +1,20 @@
+{
+  "release": "R008",
+  "generatedFromBaseCommit": "275dfb85cd4e13f974057ceedbee1bcdbcb1b79a",
+  "sha256": {
+    "README.md": "0ce1fc48ed176d4182c52e5edb6154432785f958cb181fe8fff3137ca0ade44e",
+    "THEOREM.md": "e82a1a1a016820ffae2782893f009f7073ced0e0ab702ead8341ca0309b223d5",
+    "claim.json": "093b8d0794ac0e0b182b365b791fdc28e2d931a2e8f3d3d57ca0a6454f1fb0ad",
+    "STATEMENT_AUDIT.md": "a573d2682df81ee02a8d58c15b2f69fddd37f8e9bdea5d2018a4d2a2c2006c84",
+    "VERIFICATION.md": "8367a8069e0cd9ce35aba2dfcd2d8d08d1d7c65e4e7202e7f421dc0d702e3c59",
+    "SOURCE_AUDIT.md": "71d1524b7261a2bf6e4f8c570c1809d2cad496553f5a9675359e36d2759288e6",
+    "verifier.py": "354478ae20934b581a2259c9d6ec1d8dc3868228233686b347fe0afa34ac6a65",
+    "independent_verifier.py": "ad8ddff739c402df44f08f002c4ee1f18a338372fd520659c3b50c686105fbc1",
+    "requirements.txt": "25f9f1fb1988b230147a1d3092d34e09c069eb7a6c6d6df46b3973b9f2d36efc",
+    "CITATION.cff": "e94f4c2e4fc775626b3cacf8ceacd63cbb50dfcd5298f39936ae54273e7c8158",
+    "Makefile": "592b7ba34f5ccdac3c5ae2d35fb2b4cffa18e74fae6b343b0faa60e72056a112",
+    "manuscript/README.md": "5824358746b595d7f93aea4ee8ab02b36f2eb90776d68bbc194f32a928a1bed0"
+  },
+  "manuscriptIntegrity": "manuscript/build-metadata.json stores content-addressed Git blob IDs for manuscript sources.",
+  "harnessPolicy": "verify_release.py and CI configuration are deliberately outside this scientific-artifact hash ledger so the integrity harness can evolve without recursively invalidating itself."
+}
