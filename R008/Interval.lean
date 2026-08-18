@@ -5,7 +5,7 @@ set_option autoImplicit false
 namespace R008
 
 /-- Affine coordinate sending `[left,right]` to `[0,1]`. -/
-def unitCoordinate (left right t : ℝ) : ℝ :=
+noncomputable def unitCoordinate (left right t : ℝ) : ℝ :=
   (t - left) / (right - left)
 
 theorem unitCoordinate_mem {left right t : ℝ}
