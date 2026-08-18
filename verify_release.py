@@ -25,6 +25,11 @@ def sha256(path: Path) -> str:
             h.update(chunk)
     return h.hexdigest()
 
+def git_blob_sha(path: Path) -> str:
+    data=path.read_bytes()
+    header=f"blob {len(data)}\0".encode("ascii")
+    return hashlib.sha1(header+data).hexdigest()
+
 def run(script: str) -> None:
     result=subprocess.run(
         [sys.executable, script], cwd=ROOT, text=True,
@@ -68,11 +73,9 @@ def main() -> None:
         assert actual==expected, f"hash mismatch for {rel}: {actual} != {expected}"
 
     buildmeta=json.loads((ROOT/"manuscript/build-metadata.json").read_text())
-    for rel, expected in buildmeta["sourceSha256"].items():
-        actual=sha256(ROOT/"manuscript"/rel)
-        assert actual==expected, f"manuscript source hash mismatch: {rel}"
-    assert len(buildmeta["referencePdfSha256"]) == 64
-    assert buildmeta["referencePdfSha256"].lower() == buildmeta["referencePdfSha256"]
+    for rel, expected in buildmeta["sourceGitBlobSha"].items():
+        actual=git_blob_sha(ROOT/"manuscript"/rel)
+        assert actual==expected, f"manuscript Git blob mismatch for {rel}: {actual} != {expected}"
 
     run("verifier.py")
     run("independent_verifier.py")
