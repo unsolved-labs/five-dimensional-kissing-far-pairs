@@ -5,7 +5,7 @@ import Mathlib.Algebra.BigOperators.Group.Finset.Basic
 
 set_option autoImplicit false
 
-open scoped BigOperators
+open scoped BigOperators InnerProductSpace
 
 namespace R008
 
@@ -25,7 +25,7 @@ structure CertificateSignFacts
   local_negative : ∀ t, -1 ≤ t → t ≤ (2311 : ℝ) / 22311 →
     localPolynomial t < 0
 
-/-- Positive definiteness of a kernel on one finite spherical code.  This is a
+/-- Positive definiteness of a kernel on one finite spherical code. This is a
 legitimate reusable interface, not a postulated R008 theorem. -/
 def KernelPositiveOn {ι E : Type*} [Fintype ι]
     [NormedAddCommGroup E] [InnerProductSpace ℝ E]
@@ -36,14 +36,14 @@ def KernelPositiveOn {ι E : Type*} [Fintype ι]
 
 /-- The precise shape of the missing Gegenbauer theorem: instantiate
 `KernelPositiveOn` with a normalized Gegenbauer polynomial evaluated at inner
-products.  The final proof must construct this fact; no axiom is introduced
+products. The final proof must construct this fact; no axiom is introduced
 here. -/
 def GegenbauerPositiveOn {ι E : Type*} [Fintype ι]
     [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     (C : SphericalCode ι E) (P : ℝ → ℝ) : Prop :=
   KernelPositiveOn C (fun x y => P ⟪x, y⟫_ℝ)
 
-/-- Public machine-readable marker.  It remains false until the actual
+/-- Public machine-readable marker. It remains false until the actual
 Gegenbauer, Delsarte, projection, graph, and geometry chain exports the final
 R008 theorem. -/
 def fullR008LeanVerificationAvailable : Bool := false
