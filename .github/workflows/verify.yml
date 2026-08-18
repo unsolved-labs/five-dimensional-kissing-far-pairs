@@ -31,7 +31,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-            latexmk texlive-latex-base texlive-latex-recommended texlive-fonts-recommended cm-super-minimal
+            latexmk texlive-latex-base texlive-latex-recommended texlive-fonts-recommended
       - name: Rebuild manuscript from public source
         run: |
           cd manuscript
