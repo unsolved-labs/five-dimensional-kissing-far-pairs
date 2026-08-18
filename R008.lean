@@ -11,13 +11,15 @@ import R008.Generated.GegenbauerData
 import R008.SphericalCode
 import R008.FormalizationBoundary
 import R008.CertificateBridge
+import R008.FeatureKernel
 
 /-!
 # R008 formalization entry point
 
 This development is staged. The exact rational certificate data, generated
-Bernstein interval proofs, and bridge to the frozen Gegenbauer certificate
-polynomials are included now. The spherical Gegenbauer positive-definiteness
-theorem and the final projection/graph/geometric closure are the remaining
-substantive formalization milestones; see `FORMALIZATION_STATUS.md`.
+Bernstein interval proofs, bridge to the frozen Gegenbauer certificate
+polynomials, and generic finite-feature kernel positivity layer are included
+now. The generated Gegenbauer sum-of-squares instances and the final
+projection/graph/geometric closure are the remaining substantive formalization
+milestones; see `FORMALIZATION_STATUS.md`.
 -/
