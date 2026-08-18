@@ -1,0 +1,74 @@
+{
+  "certificateSha256": "500ca358f1055da735e28d8f7998bebadca0abf7105c67046269c04e3628e55b",
+  "exactChecks": {
+    "axisDiscriminant": {
+      "denominator": 15625000000000000000000,
+      "numerator": 9207015212147067601
+    },
+    "axisU": {
+      "denominator": 125000,
+      "numerator": 12261
+    },
+    "axisV": {
+      "denominator": 125000,
+      "numerator": 355311
+    },
+    "axisW": {
+      "denominator": 125000000000,
+      "numerator": 78356282551
+    },
+    "localCap": {
+      "denominator": 22311,
+      "numerator": 2311
+    },
+    "localObjective": {
+      "denominator": 1999980,
+      "numerator": 18823697
+    },
+    "moderateDeficit": {
+      "denominator": 50000000,
+      "numerator": 912370581
+    },
+    "strongDeficit": {
+      "denominator": 100000000,
+      "numerator": 209711679
+    }
+  },
+  "maximumDepth": {
+    "localNegative": 7,
+    "moderateFarBelowOne": 7,
+    "moderateNonfarNegative": 6,
+    "strongFarBelowOne": 7,
+    "strongNonfarNegative": 6
+  },
+  "pieceCount": {
+    "localNegative": 8,
+    "moderateFarBelowOne": 8,
+    "moderateNonfarNegative": 12,
+    "strongFarBelowOne": 8,
+    "strongNonfarNegative": 12
+  },
+  "release": "R008",
+  "strictMargins": {
+    "localNegative": {
+      "denominator": 9935154593068449506539553685504000000000,
+      "numerator": -50186214990043299203056251042677311
+    },
+    "moderateFarBelowOne": {
+      "denominator": 1013309916158361600000000000000000000000000,
+      "numerator": 2135650266726256780377159200698976567
+    },
+    "moderateNonfarNegative": {
+      "denominator": 33204139332677192908800000000000000000000000000,
+      "numerator": -78233490787105666433645996541769510255861
+    },
+    "strongFarBelowOne": {
+      "denominator": 3355443200000000000000000000000000000000000000000000,
+      "numerator": 17602542348466535287229735880685789161358887481
+    },
+    "strongNonfarNegative": {
+      "denominator": 3355443200000000000000000000000000000000000000000000,
+      "numerator": -1488726512066137629421144176960426275955023179
+    }
+  }
+}
