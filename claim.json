@@ -25,7 +25,12 @@
     "independentMethod": "Python standard-library Fraction arithmetic with independently implemented Gegenbauer recurrence, polynomial arithmetic, and Sturm root counting",
     "proofAssistant": "not claimed"
   },
-  "manuscript": "manuscript/r008_far_pair_constraints.pdf",
+  "manuscript": {
+    "source": "manuscript/r008_far_pair_constraints.tex",
+    "build": "make manuscript",
+    "referencePdfSha256": "cc0c2fd756d7db5dd3b23aa064c84a4e35abab7874d4d79b285a1d4e05081c7d",
+    "pdfPublication": "GitHub Actions artifact from the manuscript job"
+  },
   "statementAudit": "STATEMENT_AUDIT.md",
   "sourceAudit": "SOURCE_AUDIT.md",
   "researchGeneration": "frontier AI",
