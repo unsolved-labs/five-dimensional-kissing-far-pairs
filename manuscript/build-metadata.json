@@ -1,0 +1,9 @@
+{
+  "sourceDateEpoch": 1786691080,
+  "buildCommand": "SOURCE_DATE_EPOCH=1786691080 FORCE_SOURCE_DATE=1 latexmk -pdf -interaction=nonstopmode -halt-on-error r008_far_pair_constraints.tex",
+  "sourceSha256": {
+    "r008_far_pair_constraints.tex": "31c4f0d59424bcf83b0ca773846b09430ed3f0024e36a8b45e467663a50b8789",
+    "references.bib": "803f953fd91fdbe0836d404b76eb60c3897da61a53a6c5c041fe6fcee97f1fe5"
+  },
+  "pdfSha256": "cc0c2fd756d7db5dd3b23aa064c84a4e35abab7874d4d79b285a1d4e05081c7d"
+}
