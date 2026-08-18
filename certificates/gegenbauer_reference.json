@@ -1,0 +1,232 @@
+{
+  "ambientDimensions": {
+    "4": [
+      {
+        "degree": 0,
+        "powerCoefficientsAscending": [
+          {
+            "denominator": 1,
+            "numerator": 1
+          }
+        ]
+      },
+      {
+        "degree": 1,
+        "powerCoefficientsAscending": [
+          {
+            "denominator": 1,
+            "numerator": 0
+          },
+          {
+            "denominator": 1,
+            "numerator": 1
+          }
+        ]
+      },
+      {
+        "degree": 2,
+        "powerCoefficientsAscending": [
+          {
+            "denominator": 3,
+            "numerator": -1
+          },
+          {
+            "denominator": 1,
+            "numerator": 0
+          },
+          {
+            "denominator": 3,
+            "numerator": 4
+          }
+        ]
+      },
+      {
+        "degree": 3,
+        "powerCoefficientsAscending": [
+          {
+            "denominator": 1,
+            "numerator": 0
+          },
+          {
+            "denominator": 1,
+            "numerator": -1
+          },
+          {
+            "denominator": 1,
+            "numerator": 0
+          },
+          {
+            "denominator": 1,
+            "numerator": 2
+          }
+        ]
+      },
+      {
+        "degree": 6,
+        "powerCoefficientsAscending": [
+          {
+            "denominator": 7,
+            "numerator": -1
+          },
+          {
+            "denominator": 1,
+            "numerator": 0
+          },
+          {
+            "denominator": 7,
+            "numerator": 24
+          },
+          {
+            "denominator": 1,
+            "numerator": 0
+          },
+          {
+            "denominator": 7,
+            "numerator": -80
+          },
+          {
+            "denominator": 1,
+            "numerator": 0
+          },
+          {
+            "denominator": 7,
+            "numerator": 64
+          }
+        ]
+      }
+    ],
+    "5": [
+      {
+        "degree": 0,
+        "powerCoefficientsAscending": [
+          {
+            "denominator": 1,
+            "numerator": 1
+          }
+        ]
+      },
+      {
+        "degree": 1,
+        "powerCoefficientsAscending": [
+          {
+            "denominator": 1,
+            "numerator": 0
+          },
+          {
+            "denominator": 1,
+            "numerator": 1
+          }
+        ]
+      },
+      {
+        "degree": 2,
+        "powerCoefficientsAscending": [
+          {
+            "denominator": 4,
+            "numerator": -1
+          },
+          {
+            "denominator": 1,
+            "numerator": 0
+          },
+          {
+            "denominator": 4,
+            "numerator": 5
+          }
+        ]
+      },
+      {
+        "degree": 3,
+        "powerCoefficientsAscending": [
+          {
+            "denominator": 1,
+            "numerator": 0
+          },
+          {
+            "denominator": 4,
+            "numerator": -3
+          },
+          {
+            "denominator": 1,
+            "numerator": 0
+          },
+          {
+            "denominator": 4,
+            "numerator": 7
+          }
+        ]
+      },
+      {
+        "degree": 4,
+        "powerCoefficientsAscending": [
+          {
+            "denominator": 8,
+            "numerator": 1
+          },
+          {
+            "denominator": 1,
+            "numerator": 0
+          },
+          {
+            "denominator": 4,
+            "numerator": -7
+          },
+          {
+            "denominator": 1,
+            "numerator": 0
+          },
+          {
+            "denominator": 8,
+            "numerator": 21
+          }
+        ]
+      },
+      {
+        "degree": 9,
+        "powerCoefficientsAscending": [
+          {
+            "denominator": 1,
+            "numerator": 0
+          },
+          {
+            "denominator": 128,
+            "numerator": 63
+          },
+          {
+            "denominator": 1,
+            "numerator": 0
+          },
+          {
+            "denominator": 32,
+            "numerator": -273
+          },
+          {
+            "denominator": 1,
+            "numerator": 0
+          },
+          {
+            "denominator": 64,
+            "numerator": 2457
+          },
+          {
+            "denominator": 1,
+            "numerator": 0
+          },
+          {
+            "denominator": 32,
+            "numerator": -1989
+          },
+          {
+            "denominator": 1,
+            "numerator": 0
+          },
+          {
+            "denominator": 128,
+            "numerator": 4199
+          }
+        ]
+      }
+    ]
+  },
+  "normalization": "P_k^(d)(1)=1"
+}

@@ -1,0 +1,38 @@
+schema_version: "development-1"
+release: "R008"
+title: "Five-dimensional kissing-code far-pair constraints"
+repository_target: "unsolved-labs/five-dimensional-kissing-far-pairs"
+status: "local source prepared; first Lean build pending"
+lean_toolchain: "leanprover/lean4:v4.32.1"
+mathlib_revision: "v4.32.1"
+entrypoint: "R008.lean"
+final_declarations: []
+sorry_policy: "zero"
+native_decide_policy: "forbidden in production proof"
+finite_certificate:
+  method: "exact rational Bernstein subdivision"
+  certificate_file: "certificates/bernstein_certificates.json"
+  certificate_sha256: "500ca358f1055da735e28d8f7998bebadca0abf7105c67046269c04e3628e55b"
+  interval_claims: 5
+  pieces: 48
+completed_local_layers:
+  - "exact certificate generation, structural verification, and independent Sturm cross-check"
+  - "48 generated piece-specific Lean Bernstein proof instances"
+  - "five generated global interval-sign theorem sources"
+  - "generated exact rational Lean data"
+  - "kernel-decision finite data checker source"
+  - "generic Bernstein coefficient bound source"
+  - "exact downstream rational arithmetic source"
+  - "abstract Delsarte sandwich arithmetic"
+  - "normalized Gegenbauer recurrence source and 11 exact reference polynomials"
+remaining_formal_layers:
+  - "compile and repair the prepared Lean source"
+  - "compile and repair the generated Bernstein identities and interval proofs"
+  - "prove the normalized Gegenbauer recurrence-to-reference identities"
+  - "prove spherical Gegenbauer kernel positive definiteness"
+  - "formalize projection and local Delsarte reduction"
+  - "formalize graph matching and disjoint-edge deductions"
+  - "formalize difference-axis geometry"
+  - "formalize endpoint-count and circle-code span deduction"
+  - "export final theorem and audit its axioms"
+verification_claim: "not yet Lean-verified"
