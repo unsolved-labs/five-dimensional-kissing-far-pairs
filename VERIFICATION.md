@@ -30,11 +30,18 @@ certificate replayers.
 python verifier.py
 ```
 
-`verifier.py` constructs the normalized Gegenbauer polynomials exactly over
-$\mathbb Q$, verifies positivity of every Gegenbauer coefficient, uses exact
-Sturm root counting for the strong/moderate/local sign intervals, recomputes
-the two Delsarte deficits and local $S^3$ objective, and verifies the exact
-rational inequalities behind the difference-axis bound.
+`verifier.py`:
+
+1. constructs the normalized Gegenbauer polynomials exactly over $\mathbb Q$;
+2. verifies positivity of every Gegenbauer coefficient;
+3. uses exact Sturm root counting to prove the required sign conditions for
+   the strong, moderate, and local polynomials;
+4. recomputes the exact Delsarte deficits forcing 2 and 10 unordered far
+   pairs;
+5. recomputes the projected $S^3$ cap and objective proving maximum moderate
+   degree at most 9;
+6. verifies the exact rational inequalities implying the
+   difference-axis bound $<779/1000$.
 
 Dependency: `sympy==1.14.0`, pinned in `requirements.txt`.
 
@@ -45,37 +52,42 @@ python independent_verifier.py
 ```
 
 This checker intentionally does **not** import SymPy or the primary verifier.
-It independently implements rational polynomial arithmetic with
-`fractions.Fraction`, the Gegenbauer three-term recurrence, polynomial
-Euclidean division, Sturm sequences/root counts, and all deficit/local/radical
-comparisons.
+It independently implements:
+
+- rational polynomial arithmetic with `fractions.Fraction`;
+- the Gegenbauer three-term recurrence;
+- polynomial Euclidean division;
+- Sturm sequences and exact root counts;
+- all deficit, local-cap, local-objective, and radical comparisons.
 
 The two verifiers share only the published mathematical certificate data
-(coefficients and rational thresholds), also printed in the manuscript and
-`THEOREM.md`.
+(coefficients and rational thresholds), which are also printed in the
+manuscript and `THEOREM.md`.
 
 ## What the exact checkers establish
 
-They establish the numerical/certificate premises used by the proof:
+The checkers establish the numerical/certificate premises used by the proof:
 
 - $E_{442/625}(C)\ge2$ from the strong polynomial;
 - $E_{133/200}(C)\ge10$ from the moderate polynomial;
-- the projected Delsarte objective is $<10$, hence $\Delta(G_m)\le9$;
-- exact arithmetic behind triangle-freeness and the endpoint count;
-- the strict normalized difference-axis bound $<779/1000$.
+- the local projected Delsarte objective is $<10$, hence
+  $\Delta(G_m)\le9$;
+- the exact arithmetic behind triangle-freeness and the endpoint count;
+- the exact strict comparison giving the normalized difference-axis bound
+  $<779/1000$.
 
 ## What remains a mathematical proof obligation
 
 The following short deductions are presently human-readable rather than
 proof-assistant formalized:
 
-- the edge-count Delsarte positivity argument;
+- the edge-count form of the Delsarte positivity argument;
 - the neighbor projection inequality and its monotonicity;
 - the graph lemma producing a two-edge matching;
 - the case argument producing a strong edge disjoint from a moderate edge;
 - the difference-axis vector decomposition and cross-anchor inequalities;
-- the Mantel/circle-code argument for seven endpoints spanning dimension at
-  least three.
+- the Mantel/circle-code argument proving at least seven endpoints spanning
+  dimension at least three.
 
 These deductions are written in full in `THEOREM.md` and the manuscript.
 
@@ -102,10 +114,13 @@ trusted. Re-running an optimizer is unnecessary for theorem verification.
 
 ## Manuscript integrity
 
-The committed PDF is built from the public LaTeX source in `manuscript/`.
-`manuscript/build-metadata.json` records the source and PDF hashes. CI rebuilds
-the manuscript from source and checks the deterministic PDF hash.
-`release-manifest.json` freezes hashes of the critical public artifacts.
+The canonical manuscript artifact in the repository is the public LaTeX source
+and bibliography under `manuscript/`; an opaque PDF is not required in Git.
+`manuscript/build-metadata.json` records source hashes, the reference build
+toolchain, and the SHA-256 of a reference PDF build. CI recompiles the source
+and publishes the resulting PDF as a workflow artifact. Exact byte identity
+across different TeX distributions is **not** part of theorem verification.
+`release-manifest.json` freezes the hashes of the critical source artifacts.
 
 ## Review status
 
