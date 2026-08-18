@@ -15,9 +15,12 @@ The repository root also provides:
 make manuscript
 ```
 
-`build-metadata.json` records source SHA-256 hashes, the reference build
-toolchain, and the SHA-256 of a reference PDF produced from these sources.
-Different TeX Live versions may produce byte-different but equivalent PDFs, so
-CI treats successful compilation as the portability check rather than requiring
-a cross-version byte-identical PDF. The manuscript workflow publishes the
-compiled PDF as a GitHub Actions artifact.
+`build-metadata.json` records the content-addressed Git blob object ID for each
+manuscript source file. `verify_release.py` recomputes those object IDs from the
+checked-out bytes. CI compiles the public source on its reference environment,
+validates that a PDF is produced, and publishes the PDF as a GitHub Actions
+artifact.
+
+PDF bytes are not required to be identical across TeX distributions; the
+source identity and successful clean-run compilation are the reproducibility
+boundary.
