@@ -7,5 +7,5 @@ name = "R008"
 
 [[require]]
 name = "mathlib"
-git = "https://github.com/leanprover-community/mathlib4.git"
+git = "https://github.com/leanprover-community/mathlib4"
 rev = "v4.32.1"
