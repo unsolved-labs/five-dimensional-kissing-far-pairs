@@ -2,67 +2,126 @@
 
 Canonical research artifact for **Unsolved Labs R008**.
 
+> **Status.** Exact computer-assisted verification is reproducible from this
+> repository. Independent specialist review remains pending. The research
+> artifact was generated with frontier AI and is published by Unsolved Labs;
+> no conventional human authorship is implied.
+
 ## Result
 
-Let \(C\subset S^4\) be a spherical code with \(|C|=41\) and
+Let $C\subset S^4$ be a spherical code with $|C|=41$ and
 
-\[
-x\cdot y\leq\frac12\qquad(x\neq y).
-\]
+$$
+x\cdot y\leq\frac12 \qquad (x\neq y).
+$$
 
-Then there are four distinct points \(x_+,x_-,y_+,y_-\in C\) such that
+Then there are four distinct points $x_+,x_-,y_+,y_-\in C$ such that
 
-\[
+$$
 x_+\cdot x_-<-\frac{442}{625},
 \qquad
 y_+\cdot y_-<-\frac{133}{200}.
-\]
+$$
 
-The two pairs can be chosen vertex-disjoint. More precisely, every such code has at least two unordered pairs below \(-442/625\) and at least ten below \(-133/200\). The graph at the latter threshold is triangle-free with maximum degree at most nine; at least seven vertices are incident with its edges and span dimension at least three. Suitable disjoint strong and moderate pairs have normalized difference axes with absolute inner product below \(779/1000\).
+More precisely, every such code has:
 
-The complete proof is in [`THEOREM.md`](THEOREM.md). The exact frozen claim is also recorded in [`claim.json`](claim.json).
+- at least **two** unordered pairs below $-442/625$;
+- at least **ten** unordered pairs below $-133/200$;
+- a moderate far-pair graph that is triangle-free with maximum degree at most
+  **nine**;
+- at least **seven** vertices incident with moderate far pairs, spanning a
+  subspace of dimension at least **three**;
+- a vertex-disjoint strong/moderate pair whose normalized difference axes have
+  absolute inner product below $779/1000$.
 
-## Reproduce
+The theorem is structural: it constrains every hypothetical 41-point
+five-dimensional kissing configuration. It **does not prove** $\tau_5=40$ and
+does not improve the proved upper bound $44$.
 
-Python 3.12 is used in CI.
+## Why this matters
+
+The five-dimensional kissing number is conjectured to be $40$, while the
+best proved upper bound remains $44$. A hypothetical counterexample to
+$\tau_5=40$ must therefore contain at least 41 points. R008 shows that any
+41-point candidate would already be forced to contain a substantial,
+geometrically separated system of unusually far-apart pairs.
+
+The exact theorem and proof are available in two forms:
+
+- [research manuscript](manuscript/r008_far_pair_constraints.pdf);
+- [GitHub-rendered theorem and proof](THEOREM.md).
+
+## Verification
+
+The load-bearing numerical claims are exact rational certificates, not
+floating-point optimization output.
+
+Two independent replay paths are provided:
+
+1. [`verifier.py`](verifier.py) — SymPy exact rational arithmetic and SymPy's
+   exact Sturm root counting;
+2. [`independent_verifier.py`](independent_verifier.py) — dependency-free
+   `fractions.Fraction` arithmetic, an independently implemented Gegenbauer
+   recurrence, polynomial Euclidean division, and Sturm root counting.
+
+Run the complete release check:
 
 ```bash
 python -m venv .venv
 . .venv/bin/activate
 python -m pip install -r requirements.txt
-python verifier.py
+python verify_release.py
 ```
 
-A successful replay begins with:
+A successful replay ends with:
 
 ```text
-ALL TWO-SCALE FAR-PAIR CERTIFICATES VERIFIED
+R008 RELEASE VERIFICATION PASSED
 ```
 
-The verifier uses exact rational arithmetic and exact Sturm root counting in SymPy. It reconstructs the Gegenbauer certificates, verifies all required interval signs, reproduces the two far-pair count bounds, checks the local degree certificate, and verifies the exact radical inequality behind the difference-axis bound.
+See [`VERIFICATION.md`](VERIFICATION.md) for the precise trust boundary and
+[`STATEMENT_AUDIT.md`](STATEMENT_AUDIT.md) for the public-claim-to-proof map.
 
-GitHub Actions reruns the same verifier on every pull request and push to `main`.
+## Repository structure
 
-## Files
-
-- [`THEOREM.md`](THEOREM.md) — statement and complete proof.
-- [`verifier.py`](verifier.py) — exact certificate replay.
+- [`manuscript/`](manuscript/) — LaTeX source, references, build instructions,
+  and reproducible PDF.
+- [`THEOREM.md`](THEOREM.md) — complete GitHub-readable theorem and proof.
 - [`claim.json`](claim.json) — machine-readable frozen claim and scope.
-- [`requirements.txt`](requirements.txt) — pinned verifier dependency.
+- [`STATEMENT_AUDIT.md`](STATEMENT_AUDIT.md) — claim-to-proof/checker mapping.
+- [`VERIFICATION.md`](VERIFICATION.md) — clean-checkout verification and trust
+  boundary.
+- [`SOURCE_AUDIT.md`](SOURCE_AUDIT.md) — pinned public baseline and scoped
+  novelty audit.
+- [`verifier.py`](verifier.py) — primary exact certificate replay.
+- [`independent_verifier.py`](independent_verifier.py) — independent,
+  dependency-free exact replay.
+- [`verify_release.py`](verify_release.py) — full release-integrity check.
+- [`release-manifest.json`](release-manifest.json) — frozen hashes of critical
+  release artifacts.
+- [`CITATION.cff`](CITATION.cff) — citation metadata.
 - [`.github/workflows/verify.yml`](.github/workflows/verify.yml) — CI replay.
 
 ## Public baseline
 
-The five-dimensional kissing number is not known exactly. Cohn and Rajagopal state that it appears to be 40 while the best proved upper bound is 44, and they record four nonisometric 40-point configurations:
+The baseline is pinned in [`SOURCE_AUDIT.md`](SOURCE_AUDIT.md). In particular,
+Cohn and Rajagopal's arXiv:2412.00937v3 (4 March 2026) records four
+nonisometric 40-point five-dimensional kissing configurations and states that
+the best proved upper bound is $44$.
 
-- Henry Cohn and Isaac Rajagopal, *Variations on five-dimensional sphere packings*, arXiv:2412.00937v3 (2026): https://arxiv.org/abs/2412.00937
-
-The positive-definite linear/semidefinite programming framework for spherical codes is established prior work; for example:
-
-- Christine Bachoc and Frank Vallentin, *New upper bounds for kissing numbers from semidefinite programming*, arXiv:math/0608426: https://arxiv.org/abs/math/0608426
-
-A targeted literature audit through August 14, 2026 found no prior source stating the exact thresholds and structural consequences released here. Independent specialist review remains pending.
+A targeted public-source search was refreshed on 18 August 2026. It did not
+locate a prior source stating the exact R008 thresholds and structural
+consequences. This is a scoped source audit, not a claim of exhaustive
+literature coverage or independent specialist validation.
 
 ## Scope
 
-This release gives exact structural constraints on any hypothetical 41-point five-dimensional kissing configuration. It **does not prove** \(\tau_5=40\), does not improve the public upper bound 44, and makes no optimality claim for the numerical thresholds \(442/625\) or \(133/200\).
+R008 does **not**:
+
+- prove $\tau_5=40$;
+- improve the public upper bound $44$;
+- claim optimality of the thresholds $442/625$, $133/200$, or $779/1000$;
+- treat the certificate-search procedure as part of the final correctness
+  oracle.
+
+Independent specialist review remains **pending**.
