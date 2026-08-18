@@ -114,13 +114,19 @@ trusted. Re-running an optimizer is unnecessary for theorem verification.
 
 ## Manuscript integrity
 
-The canonical manuscript artifact in the repository is the public LaTeX source
-and bibliography under `manuscript/`; an opaque PDF is not required in Git.
-`manuscript/build-metadata.json` records source hashes, the reference build
-toolchain, and the SHA-256 of a reference PDF build. CI recompiles the source
-and publishes the resulting PDF as a workflow artifact. Exact byte identity
-across different TeX distributions is **not** part of theorem verification.
-`release-manifest.json` freezes the hashes of the critical source artifacts.
+The canonical manuscript artifacts are the public LaTeX source and
+bibliography under `manuscript/`; an opaque PDF is not required in Git.
+`manuscript/build-metadata.json` records the content-addressed Git blob object
+ID of each manuscript source file, and `verify_release.py` recomputes those
+object IDs directly from the checked-out bytes. CI recompiles the public source
+on Ubuntu 24.04 / TeX Live 2023 and publishes the resulting PDF as a workflow
+artifact. Exact PDF byte identity across TeX distributions is not part of
+theorem verification.
+
+`release-manifest.json` separately freezes SHA-256 hashes for the
+scientific/public artifacts that should not change silently. The integrity
+harness (`verify_release.py`) and CI workflow are intentionally outside that
+ledger so they can be maintained without recursively invalidating themselves.
 
 ## Review status
 
