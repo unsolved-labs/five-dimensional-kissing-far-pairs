@@ -16,7 +16,7 @@ The recurrence is
 
 `(n+1) C_(n+1) = 2(n+λ) X C_n - (n+2λ-1) C_(n-1)`.
 -/
-def rawGegenbauer (d : ℚ) : Nat → Polynomial ℚ
+noncomputable def rawGegenbauer (d : ℚ) : Nat → Polynomial ℚ
   | 0 => 1
   | 1 => C (d - 2) * X
   | n + 2 =>
@@ -32,7 +32,7 @@ noncomputable def normalizedGegenbauer (d : ℚ) (k : Nat) : Polynomial ℚ :=
 @[simp] theorem rawGegenbauer_one (d : ℚ) :
     rawGegenbauer d 1 = C (d - 2) * X := rfl
 
-/-- Conditional normalization theorem.  Nonvanishing at one will be proved
+/-- Conditional normalization theorem. Nonvanishing at one will be proved
 for the dimensions/degrees used by R008, then generalized if useful. -/
 theorem normalizedGegenbauer_eval_one {d : ℚ} {k : Nat}
     (h : (rawGegenbauer d k).eval 1 ≠ 0) :
@@ -86,21 +86,21 @@ noncomputable def localCertificatePolynomial : Polynomial ℚ :=
   gegenbauerCombination 4 localGegenbauerCoefficients
 
 /-- Exact finite check that all frozen Gegenbauer coefficients are
-nonnegative.  This is only the coefficient premise; kernel positivity is a
+nonnegative. This is only the coefficient premise; kernel positivity is a
 separate theorem. -/
 def coefficientsNonnegative (coefficients : List (Nat × ℚ)) : Bool :=
   coefficients.all fun term => decide (0 ≤ term.2)
 
 @[simp] theorem strongGegenbauerCoefficients_nonnegative :
     coefficientsNonnegative strongGegenbauerCoefficients = true := by
-  decide
+  norm_num [coefficientsNonnegative, strongGegenbauerCoefficients]
 
 @[simp] theorem moderateGegenbauerCoefficients_nonnegative :
     coefficientsNonnegative moderateGegenbauerCoefficients = true := by
-  decide
+  norm_num [coefficientsNonnegative, moderateGegenbauerCoefficients]
 
 @[simp] theorem localGegenbauerCoefficients_nonnegative :
     coefficientsNonnegative localGegenbauerCoefficients = true := by
-  decide
+  norm_num [coefficientsNonnegative, localGegenbauerCoefficients]
 
 end R008
