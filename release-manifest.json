@@ -10,7 +10,7 @@
     "SOURCE_AUDIT.md": "71d1524b7261a2bf6e4f8c570c1809d2cad496553f5a9675359e36d2759288e6",
     "verifier.py": "354478ae20934b581a2259c9d6ec1d8dc3868228233686b347fe0afa34ac6a65",
     "independent_verifier.py": "ad8ddff739c402df44f08f002c4ee1f18a338372fd520659c3b50c686105fbc1",
-    "verify_release.py": "98087642121d5a1ebce966ee555e8e0ccb4abbca413150a4327be30ba4a33ab9",
+    "verify_release.py": "fb412768eb2b15b016d6d0af3895271cebc885fb56e89113e874f5863f87b313",
     "requirements.txt": "25f9f1fb1988b230147a1d3092d34e09c069eb7a6c6d6df46b3973b9f2d36efc",
     "CITATION.cff": "e94f4c2e4fc775626b3cacf8ceacd63cbb50dfcd5298f39936ae54273e7c8158",
     "Makefile": "592b7ba34f5ccdac3c5ae2d35fb2b4cffa18e74fae6b343b0faa60e72056a112",
