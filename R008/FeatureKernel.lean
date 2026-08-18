@@ -61,9 +61,14 @@ theorem kernelPositiveOn_rankOne (C : SphericalCode ι E)
             rw [Finset.sum_mul]
       _ = (coefficient * (∑ i, weights i * feature (C.point i))) *
           (∑ j, weights j * feature (C.point j)) := by
-            rw [Finset.mul_sum]
+            have hFactor :
+                (∑ i, coefficient * (weights i * feature (C.point i))) =
+                  coefficient * (∑ i, weights i * feature (C.point i)) := by
+              rw [Finset.mul_sum]
+            rw [hFactor]
       _ = coefficient * s ^ 2 := by
-            simp [s, pow_two]
+            dsimp [s]
+            ring
   rw [hIdentity]
   exact mul_nonneg hCoefficient (sq_nonneg s)
 
