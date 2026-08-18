@@ -15,7 +15,7 @@ This is the graph-theoretic core used in R008: if a triangle-free graph has no
 matching of size two, then every edge contains one common vertex. -/
 theorem star_of_pairwise_intersecting_triangleFree
     {α : Type*} (R : α → α → Prop)
-    (hSymm : Symmetric R)
+    (hSymm : Std.Symm R)
     (hTriangle : ∀ ⦃a b c : α⦄, R a b → R b c → R c a → False)
     {a b : α} (hab : R a b)
     (hPairwise : ∀ ⦃u v x y : α⦄,
@@ -24,7 +24,7 @@ theorem star_of_pairwise_intersecting_triangleFree
   classical
   by_cases hStarA : ∀ ⦃u v : α⦄, R u v → u = a ∨ v = a
   · exact ⟨a, hStarA⟩
-  · push_neg at hStarA
+  · push Not at hStarA
     obtain ⟨c, d, hcd, hca, hda⟩ := hStarA
     have hcb_or_hdb : c = b ∨ d = b := by
       rcases hPairwise hcd hab with hca' | hcb | hda' | hdb
@@ -70,7 +70,7 @@ theorem star_of_pairwise_intersecting_triangleFree
 it contains two endpoint-disjoint edges. -/
 theorem exists_disjoint_edges_of_not_star
     {α : Type*} (R : α → α → Prop)
-    (hSymm : Symmetric R)
+    (hSymm : Std.Symm R)
     (hTriangle : ∀ ⦃a b c : α⦄, R a b → R b c → R c a → False)
     {a b : α} (hab : R a b)
     (hNotStar : ¬ ∃ center : α,
