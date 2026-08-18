@@ -1,7 +1,7 @@
 import R008.FormalizationBoundary
 import R008.Generated.BernsteinProofs
 import Mathlib.Algebra.Algebra.Rat
-import Mathlib.RingTheory.Polynomial.Eval.Defs
+import Mathlib.Algebra.Polynomial.Eval.Defs
 import Mathlib.Tactic
 
 set_option autoImplicit false
