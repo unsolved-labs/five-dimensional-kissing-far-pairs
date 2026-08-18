@@ -56,7 +56,7 @@ theorem star_of_pairwise_intersecting_triangleFree
         rcases hzEndpoint with huz | hvz
       · exact hza (huz.symm.trans hua)
       · have haz : R a z := by simpa [hua, hvz] using huv
-        exact hTriangle hab hbz (hSymm haz)
+        exact hTriangle hab hbz (hSymm.symm _ _ haz)
       · have hzaEdge : R z a := by simpa [huz, hva] using huv
         exact hTriangle hab hbz hzaEdge
       · exact hza (hvz.symm.trans hva)
@@ -64,7 +64,7 @@ theorem star_of_pairwise_intersecting_triangleFree
     · have hbD : R b d := by simpa [hcb] using hcd
       exact ⟨b, starAtB hbD hda⟩
     · have hcB : R c b := by simpa [hdb] using hcd
-      exact ⟨b, starAtB (hSymm hcB) hca⟩
+      exact ⟨b, starAtB (hSymm.symm _ _ hcB) hca⟩
 
 /-- If a symmetric triangle-free relation has an edge but is not a star, then
 it contains two endpoint-disjoint edges. -/
