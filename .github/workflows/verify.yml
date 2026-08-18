@@ -105,10 +105,42 @@ jobs:
           use-mathlib-cache: true
           build-args: '--wfail'
           leanchecker: false
-          nanoda: true
-          nanoda-allow-sorry: false
+          nanoda: false
       - name: Replay R008 with Lean's environment checker
         run: lake env leanchecker R008
+      - name: Check R008 with nanoda external type checker
+        run: |
+          set -euo pipefail
+          trap 'rm -rf _lean4export _nanoda_lib _nanoda_export.txt _nanoda_config.json' EXIT
+
+          mkdir _lean4export
+          git -C _lean4export init -q
+          git -C _lean4export remote add origin https://github.com/leanprover/lean4export.git
+          git -C _lean4export fetch -q --depth 1 origin b18d673bd29b476466a51a3be1012df2ed322b10
+          git -C _lean4export checkout -q FETCH_HEAD
+          cp lean-toolchain _lean4export/
+          (cd _lean4export && lake build)
+
+          mkdir _nanoda_lib
+          git -C _nanoda_lib init -q
+          git -C _nanoda_lib remote add origin https://github.com/ammkrn/nanoda_lib.git
+          git -C _nanoda_lib fetch -q --depth 1 origin e5438ac0a85a036b6dfe093aa457bc3448498014
+          git -C _nanoda_lib checkout -q FETCH_HEAD
+          cargo build --release --manifest-path _nanoda_lib/Cargo.toml
+
+          lake env _lean4export/.lake/build/bin/lean4export R008 > _nanoda_export.txt
+          cat > _nanoda_config.json <<'JSON'
+          {
+            "export_file_path": "_nanoda_export.txt",
+            "use_stdin": false,
+            "permitted_axioms": ["propext", "Classical.choice", "Quot.sound", "Lean.trustCompiler"],
+            "unpermitted_axiom_hard_error": false,
+            "nat_extension": true,
+            "string_extension": true,
+            "print_success_message": true
+          }
+          JSON
+          _nanoda_lib/target/release/nanoda_bin _nanoda_config.json
       - name: Reject proof placeholders and native-decision trust
         run: |
           if grep -RInE --include='*.lean' '^[[:space:]]*(by[[:space:]]+)?(sorry|admit|axiom|native_decide)\b' R008 R008.lean; then
