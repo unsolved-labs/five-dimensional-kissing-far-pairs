@@ -1,0 +1,464 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,hyperref,microtype}
+\usepackage[T1]{fontenc}
+\hypersetup{hidelinks}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{remark}{Remark}
+
+\title{Two-scale far-pair constraints for hypothetical\\
+41-point kissing codes in dimension five}
+\author{Unsolved Labs}
+\date{Research release R008}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We prove exact structural constraints on any hypothetical spherical code
+$C\subset S^4$ of cardinality $41$ with pairwise inner products at most
+$1/2$. Two rational Gegenbauer certificates force at least two unordered
+pairs with inner product below $-442/625$ and at least ten below $-133/200$.
+A third certificate bounds the degree of the moderate far-pair graph by nine.
+Together with elementary graph and Euclidean geometry, these facts yield a
+vertex-disjoint strong/moderate pair, at least seven moderate-edge endpoints
+spanning dimension at least three, and a strict $779/1000$ bound on the
+absolute inner product of suitable normalized difference axes. The
+polynomial sign claims are replayed exactly by two independent Sturm
+implementations, one using SymPy and one using only Python's standard-library
+rational arithmetic. The result is structural and does not prove that the
+five-dimensional kissing number is $40$.
+\end{abstract}
+
+\paragraph{Research provenance.}
+This manuscript documents an Unsolved Labs research release generated with
+frontier AI. The final claim is supported by the public proof and exact
+certificate replay described below. Independent specialist review remains
+pending; no conventional human authorship or external endorsement is implied.
+
+\section{Introduction}
+
+The kissing number $\tau_d$ is the largest number of unit spheres in
+$\mathbb R^d$ that can touch a central unit sphere without overlapping.
+Equivalently, it is the maximum cardinality of a spherical code
+$C\subset S^{d-1}$ whose distinct inner products are at most $1/2$.
+The five-dimensional problem is unresolved. Cohn and Rajagopal
+\cite{cohnrajagopal2026} state that $\tau_5$ appears to be $40$, while the
+best proved upper bound is $44$, and they exhibit a fourth nonisometric
+40-point configuration. The upper bound $44$ comes from semidefinite
+programming computations of Mittelmann and Vallentin
+\cite{mittelmannvallentin2010}.
+
+Thus any hypothetical counterexample to $\tau_5=40$ must already contain at
+least $41$ points. This paper does not exclude such a code. Instead, it
+shows that any 41-point code is forced to contain a substantial pattern of
+very negative inner products at two distinct scales. The argument uses the
+classical positive-definite Gegenbauer/Delsarte framework for spherical codes,
+together with exact rational polynomial certificates. The semidefinite
+programming framework for spherical codes is established prior work; see,
+for example, Bachoc and Vallentin \cite{bachocvallentin2008}.
+
+The contribution is the particular two-scale certificate and the structural
+consequences extracted from it. The certificate search is not trusted in the
+final proof: only the frozen rational coefficients and exact sign replay are
+used.
+
+\section{Statement}
+
+For $a>0$, let $E_a(C)$ denote the number of unordered pairs
+$\{x,y\}\subset C$ with $x\cdot y<-a$.
+
+\begin{theorem}\label{thm:main}
+Let $C\subset S^4$ satisfy $|C|=41$ and
+\[
+x\cdot y\le \frac12 \qquad (x\ne y).
+\]
+Then:
+\begin{enumerate}
+\item $E_{442/625}(C)\ge2$;
+\item $E_{133/200}(C)\ge10$;
+\item the graph $G_m$ whose edges are the pairs with inner product below
+      $-133/200$ is triangle-free and has maximum degree at most $9$;
+\item at least seven vertices are incident with edges of $G_m$, and those
+      vertices span a subspace of dimension at least $3$;
+\item there exist four distinct points $x_+,x_-,y_+,y_-\in C$ such that
+\[
+x_+\cdot x_-<-\frac{442}{625},\qquad
+y_+\cdot y_-<-\frac{133}{200},
+\]
+and if
+\[
+e=\frac{x_+-x_-}{\|x_+-x_-\|},\qquad
+f=\frac{y_+-y_-}{\|y_+-y_-\|},
+\]
+then
+\[
+|e\cdot f|<\frac{779}{1000}.
+\]
+\end{enumerate}
+\end{theorem}
+
+\begin{remark}
+The theorem does not prove $\tau_5=40$, does not improve the proved upper
+bound $44$, and makes no optimality claim for the thresholds $442/625$,
+$133/200$, or $779/1000$.
+\end{remark}
+
+\section{Proof overview}
+
+The proof has four layers.
+
+First, an edge-count variant of the Delsarte linear-programming argument
+turns a positive Gegenbauer expansion with two sign conditions into a lower
+bound for the number of pairs below a chosen negative threshold.
+
+Second, two explicit rational degree-nine certificates force at least two
+``strong'' far pairs below $-442/625$ and at least ten ``moderate'' far pairs
+below $-133/200$.
+
+Third, projecting all moderate neighbors of one code point into its
+orthogonal $S^3$ reduces the local degree problem to an ordinary spherical
+code bound. A third exact certificate shows that at most nine moderate
+neighbors are possible.
+
+Finally, elementary graph theory and Euclidean geometry convert these
+numerical facts into a disjoint-pair statement, endpoint/span constraints,
+and the difference-axis separation bound.
+
+Every polynomial sign assertion is certified by exact Sturm root counting
+over $\mathbb Q$ in two independent implementations.
+
+\section{An edge-count Delsarte lemma}
+
+Let $P_k^{(5)}$ be the normalized Gegenbauer polynomials for $S^4$, with
+$P_k^{(5)}(1)=1$.
+
+\begin{lemma}\label{lem:edgecount}
+Suppose
+\[
+f(t)=\sum_{k\ge0}a_kP_k^{(5)}(t),\qquad a_k\ge0,
+\]
+and, for some $a\in(0,1)$,
+\[
+f(t)\le0\quad(-a\le t\le1/2),\qquad
+f(t)\le1\quad(-1\le t<-a).
+\]
+Then every $N$-point spherical code in $S^4$ with pairwise inner products at
+most $1/2$ satisfies
+\[
+E_a(C)\ge
+\left\lceil\frac{a_0N^2-Nf(1)}2\right\rceil.
+\]
+\end{lemma}
+
+\begin{proof}
+Gegenbauer positivity gives
+\[
+a_0N^2\le \sum_{x,y\in C}f(x\cdot y).
+\]
+The diagonal contributes $Nf(1)$. Each unordered pair below $-a$ contributes
+at most $2$ to the ordered-pair sum, while every other off-diagonal pair
+contributes at most $0$. Hence
+\[
+a_0N^2\le Nf(1)+2E_a(C),
+\]
+which proves the claim.
+\end{proof}
+
+\section{Two exact far-pair certificates}
+
+\subsection{Strong threshold}
+
+Define
+\[
+f_s(t)=\sum_k a_kP_k^{(5)}(t)
+\]
+using the nonzero coefficients in Table~\ref{tab:strong}.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{crrrrrr}
+\toprule
+$k$ & 0 & 1 & 2 & 3 & 4 & 9\\
+\midrule
+$a_k$
+& $\frac{13939907}{10^8}$
+& $\frac{12103401}{25000000}$
+& $\frac{139479103}{10^8}$
+& $\frac{30090377}{25000000}$
+& $\frac{41787773}{25000000}$
+& $\frac{38538027}{50000000}$\\
+\bottomrule
+\end{tabular}
+\caption{Strong-edge certificate.}
+\label{tab:strong}
+\end{table}
+
+Exact Sturm replay proves
+\[
+f_s(t)<0\quad\text{for }-\frac{442}{625}\le t\le\frac12,
+\]
+and
+\[
+f_s(t)<1\quad\text{for }-1\le t\le-\frac{442}{625}.
+\]
+For $N=41$,
+\[
+N^2a_0-Nf_s(1)=\frac{209711679}{10^8}=2.09711679.
+\]
+Lemma~\ref{lem:edgecount} therefore gives
+\begin{equation}\label{eq:strong}
+E_{442/625}(C)\ge2.
+\end{equation}
+
+\subsection{Moderate threshold}
+
+Define
+\[
+f_m(t)=\sum_k a_kP_k^{(5)}(t)
+\]
+using Table~\ref{tab:moderate}.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{crrrrrr}
+\toprule
+$k$ & 0 & 1 & 2 & 3 & 4 & 9\\
+\midrule
+$a_k$
+& $\frac{6113963}{50000000}$
+& $\frac{3549967}{10^7}$
+& $\frac{59464043}{50000000}$
+& $\frac{11303433}{12500000}$
+& $\frac{17480877}{12500000}$
+& $\frac{29954461}{50000000}$\\
+\bottomrule
+\end{tabular}
+\caption{Moderate-edge certificate.}
+\label{tab:moderate}
+\end{table}
+
+Exact replay proves
+\[
+f_m(t)<0\quad\text{for }-\frac{133}{200}\le t\le\frac12,
+\]
+and
+\[
+f_m(t)<1\quad\text{for }-1\le t\le-\frac{133}{200}.
+\]
+Moreover,
+\[
+N^2a_0-Nf_m(1)=\frac{912370581}{50000000}=18.24741162.
+\]
+Thus
+\begin{equation}\label{eq:moderate}
+E_{133/200}(C)\ge10.
+\end{equation}
+
+\section{The moderate far-pair graph}
+
+Let $G_m$ have vertex set $C$ and join $x$ to $y$ exactly when
+$x\cdot y<-133/200$.
+
+\subsection{Maximum degree}
+
+Fix $x\in C$. For each neighbor $y_i$, write
+\[
+y_i=-p_ix+\sqrt{1-p_i^2}\,u_i,
+\qquad
+p_i>\frac{133}{200},
+\qquad
+u_i\in S^3\subset x^\perp.
+\]
+For distinct neighbors,
+\[
+u_i\cdot u_j\le
+\frac{\frac12-p_ip_j}
+{\sqrt{(1-p_i^2)(1-p_j^2)}}.
+\]
+For $p,q>1/2$, the right-hand side is decreasing in either variable: its
+partial derivative with respect to $p$ has the sign of $p/2-q$.
+Consequently
+\[
+u_i\cdot u_j<
+c:=
+\frac{\frac12-(133/200)^2}{1-(133/200)^2}
+=\frac{2311}{22311}.
+\]
+
+Now use normalized Gegenbauer polynomials $P_k^{(4)}$ for $S^3$ and the
+coefficients in Table~\ref{tab:local}.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{crrrrr}
+\toprule
+$k$ & 0 & 1 & 2 & 3 & 6\\
+\midrule
+$b_k$
+& $\frac{99999}{100000}$
+& $\frac{153764653}{50000000}$
+& $\frac{89219103}{25000000}$
+& $\frac{163063619}{10^8}$
+& $\frac{13716513}{10^8}$\\
+\bottomrule
+\end{tabular}
+\caption{Local projected $S^3$ certificate.}
+\label{tab:local}
+\end{table}
+
+The resulting polynomial $g$ is exactly negative on
+$[-1,2311/22311]$, while
+\[
+\frac{g(1)}{b_0}
+=\frac{18823697}{1999980}
+=9.4119426\ldots<10.
+\]
+The ordinary Delsarte bound therefore implies
+\begin{equation}\label{eq:degree}
+\Delta(G_m)\le9.
+\end{equation}
+
+\subsection{Triangle-freeness and a matching}
+
+If three code vectors were pairwise adjacent in $G_m$, then
+\[
+\|x+y+z\|^2
+<
+3-6\left(\frac{133}{200}\right)<0,
+\]
+which is impossible. Thus $G_m$ is triangle-free.
+
+A triangle-free graph in which every two edges intersect is a star: if $xy$
+and $xz$ are edges, an edge avoiding $x$ would have to be $yz$, creating a
+triangle. Therefore a triangle-free graph with no matching of size two is a
+star. But \eqref{eq:moderate} gives at least ten edges while
+\eqref{eq:degree} bounds the degree of any star by nine. Hence $G_m$
+contains two vertex-disjoint edges.
+
+Let $G_s\subset G_m$ be the strong graph at threshold $-442/625$.
+Equation~\eqref{eq:strong} gives at least two strong edges. If two strong
+edges are disjoint, we are done. Otherwise take intersecting strong edges
+$xy,xz$ and a two-edge matching of $G_m$. If one matching edge avoids $xy$,
+it is disjoint from a strong edge. Otherwise the two matching edges must meet
+$x$ and $y$ separately; the one through $y$ cannot contain $z$ because that
+would create the triangle $xyz$. It is therefore disjoint from $xz$.
+Thus there is always a strong edge disjoint from a moderate edge.
+
+\section{Difference-axis separation}
+
+Write the selected pairs as
+\[
+x_\pm=m\pm p,\qquad y_\pm=n\pm q.
+\]
+Since the endpoints are unit vectors, $m\perp p$ and $n\perp q$.
+The pair thresholds imply
+\[
+\|m\|^2<\frac{183}{1250},\quad
+\|p\|^2>\frac{1067}{1250},\quad
+\|n\|^2<\frac{67}{400},\quad
+\|q\|^2>\frac{333}{400}.
+\]
+All four cross pairs are distinct code points, so their inner products are at
+most $1/2$. Adding opposite cross inequalities yields
+\[
+m\cdot n+p\cdot q\le\frac12,\qquad
+m\cdot n-p\cdot q\le\frac12.
+\]
+Hence
+\[
+|p\cdot q|
+\le\frac12-m\cdot n
+\le\frac12+\|m\|\,\|n\|.
+\]
+For $e=p/\|p\|$ and $f=q/\|q\|$,
+\[
+|e\cdot f|
+<
+\frac{1+\sqrt{(1-442/625)(1-133/200)}}
+{\sqrt{(1+442/625)(1+133/200)}}.
+\]
+The exact certificate verifies, without relying on the decimal display, that
+the right-hand side is strictly below $779/1000$.
+
+\section{Endpoint count and span}
+
+Let $W$ be the vertices incident with $G_m$. The induced graph on $W$ is
+triangle-free and has at least ten edges. Mantel's theorem gives at most
+$\lfloor 6^2/4\rfloor=9$ edges on six vertices, so $|W|\ge7$.
+
+If $W$ were contained in a subspace of dimension at most two, its unit
+vectors would lie on a circle (or a smaller sphere) with pairwise angular
+separation at least $60^\circ$. Such a circle code has at most six points.
+Therefore
+\[
+\dim\operatorname{span}(W)\ge3.
+\]
+This completes the proof of Theorem~\ref{thm:main}.
+
+\section{Exact verification and trust boundary}
+
+The repository contains two independent exact replay paths.
+
+The primary checker uses SymPy exact rational arithmetic and SymPy's Sturm
+root counting. The independent checker uses only Python's
+\texttt{fractions.Fraction}, constructs Gegenbauer polynomials from the
+three-term recurrence, implements polynomial Euclidean division, and applies
+Sturm's theorem directly. Both independently reproduce all sign intervals,
+the two Delsarte deficits, the local $S^3$ objective, and the exact radical
+comparison.
+
+The search process that discovered the certificates is outside the final
+trust boundary. The final proof depends only on the printed rational
+coefficients, standard Gegenbauer positivity/Delsarte theory, elementary
+graph and Euclidean deductions, and the exact replay.
+
+The graph/geometric deductions are not currently Lean-formalized. The
+repository therefore describes the result as exact computer-assisted
+verification, not Lean verification. A useful future formalization would
+target Lemma~\ref{lem:edgecount}, the projection reduction, the graph lemmas,
+and the interface from exact Sturm certificates to polynomial sign claims.
+
+\section{Related work and scope}
+
+The positive-definite and semidefinite-programming framework for spherical
+codes is prior work \cite{bachocvallentin2008}. Cohn and Rajagopal
+\cite{cohnrajagopal2026} provide the current five-dimensional construction
+context and cite the proved upper bound $44$ from
+\cite{mittelmannvallentin2010}.
+
+A targeted public-source search refreshed on 18 August 2026 did not locate a
+prior source stating the exact thresholds $-442/625$ and $-133/200$ together
+with the corresponding 2/10 pair-count bounds and the released
+disjoint-pair, endpoint, span, and axis consequences for every hypothetical
+41-point code. This is deliberately phrased as a scoped source audit rather
+than an exhaustive priority claim.
+
+\begin{thebibliography}{9}
+
+\bibitem{cohnrajagopal2026}
+Henry Cohn and Isaac Rajagopal.
+\newblock Variations on five-dimensional sphere packings.
+\newblock \emph{Discrete \& Computational Geometry}, 2026.
+\newblock arXiv:2412.00937v3; doi:10.1007/s00454-026-00841-x.
+
+\bibitem{mittelmannvallentin2010}
+Hans D. Mittelmann and Frank Vallentin.
+\newblock High accuracy semidefinite programming bounds for kissing numbers.
+\newblock \emph{Experimental Mathematics}, 19(2):175--179, 2010.
+\newblock arXiv:0902.1105.
+
+\bibitem{bachocvallentin2008}
+Christine Bachoc and Frank Vallentin.
+\newblock New upper bounds for kissing numbers from semidefinite programming.
+\newblock \emph{Journal of the American Mathematical Society},
+21(3):909--924, 2008.
+\newblock arXiv:math/0608426; doi:10.1090/S0894-0347-07-00589-9.
+
+\end{thebibliography}
+
+\end{document}
