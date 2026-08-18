@@ -102,4 +102,15 @@ theorem kernelPositiveOn_congr (C : SphericalCode ι E)
   intro weights
   simpa [hEq] using hK weights
 
+/-- For a fixed finite code it is enough for two kernels to agree on the code
+points. This is the form used when a homogeneous SOS identity is reduced to a
+normalized Gegenbauer polynomial using the unit-norm hypotheses. -/
+theorem kernelPositiveOn_congr_points (C : SphericalCode ι E)
+    {K L : E → E → ℝ} (hK : KernelPositiveOn C K)
+    (hEq : ∀ i j, K (C.point i) (C.point j) = L (C.point i) (C.point j)) :
+    KernelPositiveOn C L := by
+  intro weights
+  have h := hK weights
+  simpa [hEq] using h
+
 end R008
