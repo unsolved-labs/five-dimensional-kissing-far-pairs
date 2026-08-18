@@ -1,0 +1,19 @@
+{
+  "release": "R008",
+  "generatedFromBaseCommit": "275dfb85cd4e13f974057ceedbee1bcdbcb1b79a",
+  "sha256": {
+    "README.md": "4867844f2fe4571fc3aa8e9fc0953963d7e5a053bd4b5b7a32a514c5e6e3728c",
+    "THEOREM.md": "d4ee40fb9bc4d348a479cd08012b2c86304166f66376514bc567f0174960b331",
+    "claim.json": "518e49bbb667a9e251c80c554cbb8384d683d34e2e6e4f0f6ab45c2476ab502f",
+    "STATEMENT_AUDIT.md": "a573d2682df81ee02a8d58c15b2f69fddd37f8e9bdea5d2018a4d2a2c2006c84",
+    "VERIFICATION.md": "a586147ccb5f7145608715bcb97349ac5e3fb24af8fd2f580f8ed6b0405f7acf",
+    "SOURCE_AUDIT.md": "71d1524b7261a2bf6e4f8c570c1809d2cad496553f5a9675359e36d2759288e6",
+    "independent_verifier.py": "ad8ddff739c402df44f08f002c4ee1f18a338372fd520659c3b50c686105fbc1",
+    "verify_release.py": "dde767c2d26bc6f406f1416169c8738861d859dfa11905174b00bdd02203c95b",
+    "CITATION.cff": "e94f4c2e4fc775626b3cacf8ceacd63cbb50dfcd5298f39936ae54273e7c8158",
+    "manuscript/r008_far_pair_constraints.tex": "31c4f0d59424bcf83b0ca773846b09430ed3f0024e36a8b45e467663a50b8789",
+    "manuscript/references.bib": "803f953fd91fdbe0836d404b76eb60c3897da61a53a6c5c041fe6fcee97f1fe5",
+    "manuscript/r008_far_pair_constraints.pdf": "cc0c2fd756d7db5dd3b23aa064c84a4e35abab7874d4d79b285a1d4e05081c7d",
+    "manuscript/build-metadata.json": "88fc64f1137724662fa60e90aee9e89cb2c7b118aa880e072a9aff47f2aa3585"
+  }
+}
