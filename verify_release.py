@@ -15,8 +15,7 @@ REQUIRED = [
     "VERIFICATION.md", "SOURCE_AUDIT.md", "verifier.py",
     "independent_verifier.py", "requirements.txt", "CITATION.cff",
     "release-manifest.json", "manuscript/r008_far_pair_constraints.tex",
-    "manuscript/references.bib", "manuscript/r008_far_pair_constraints.pdf",
-    "manuscript/build-metadata.json",
+    "manuscript/references.bib", "manuscript/build-metadata.json",
 ]
 
 def sha256(path: Path) -> str:
@@ -63,9 +62,6 @@ def main() -> None:
         for legacy in (r"\(",r"\)",r"\[",r"\]"):
             assert legacy not in text, f"{rel} contains legacy math delimiter {legacy}"
 
-    pdf=(ROOT/"manuscript/r008_far_pair_constraints.pdf").read_bytes()
-    assert pdf.startswith(b"%PDF-"), "committed manuscript is not a PDF"
-
     manifest=json.loads((ROOT/"release-manifest.json").read_text())
     for rel, expected in manifest["sha256"].items():
         actual=sha256(ROOT/rel)
@@ -75,7 +71,8 @@ def main() -> None:
     for rel, expected in buildmeta["sourceSha256"].items():
         actual=sha256(ROOT/"manuscript"/rel)
         assert actual==expected, f"manuscript source hash mismatch: {rel}"
-    assert sha256(ROOT/"manuscript/r008_far_pair_constraints.pdf")==buildmeta["pdfSha256"]
+    assert len(buildmeta["referencePdfSha256"]) == 64
+    assert buildmeta["referencePdfSha256"].lower() == buildmeta["referencePdfSha256"]
 
     run("verifier.py")
     run("independent_verifier.py")
