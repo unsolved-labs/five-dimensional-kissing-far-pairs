@@ -13,23 +13,32 @@ namespace R008
 
 abbrev Euclidean5 := EuclideanSpace ℝ (Fin 5)
 
+noncomputable section
+
+private abbrev e5i0 : Fin 5 := 0
+private abbrev e5i1 : Fin 5 := Fin.succ (0 : Fin 4)
+private abbrev e5i2 : Fin 5 := Fin.succ (Fin.succ (0 : Fin 3))
+private abbrev e5i3 : Fin 5 := Fin.succ (Fin.succ (Fin.succ (0 : Fin 2)))
+private abbrev e5i4 : Fin 5 :=
+  Fin.succ (Fin.succ (Fin.succ (Fin.succ (0 : Fin 1))))
+
 /-- Fourteen rational quadratic features giving a Gram decomposition of the
 normalized degree-two Gegenbauer kernel on `S⁴`. -/
 def gegenbauer5Degree2Feature : Fin 14 → Euclidean5 → ℝ := fun r x =>
-  (![x 4 ^ 2 - (x 3 ^ 2 + x 2 ^ 2 + x 1 ^ 2 + x 0 ^ 2) / 4,
-     x 3 ^ 2 - (x 2 ^ 2 + x 1 ^ 2 + x 0 ^ 2) / 3,
-     x 2 ^ 2 - (x 1 ^ 2 + x 0 ^ 2) / 2,
-     x 1 ^ 2 - x 0 ^ 2,
-     x 3 * x 4,
-     x 2 * x 4,
-     x 2 * x 3,
-     x 1 * x 4,
-     x 1 * x 3,
-     x 1 * x 2,
-     x 0 * x 4,
-     x 0 * x 3,
-     x 0 * x 2,
-     x 0 * x 1] : Fin 14 → ℝ) r
+  (![x e5i4 ^ 2 - (x e5i3 ^ 2 + x e5i2 ^ 2 + x e5i1 ^ 2 + x e5i0 ^ 2) / 4,
+     x e5i3 ^ 2 - (x e5i2 ^ 2 + x e5i1 ^ 2 + x e5i0 ^ 2) / 3,
+     x e5i2 ^ 2 - (x e5i1 ^ 2 + x e5i0 ^ 2) / 2,
+     x e5i1 ^ 2 - x e5i0 ^ 2,
+     x e5i3 * x e5i4,
+     x e5i2 * x e5i4,
+     x e5i2 * x e5i3,
+     x e5i1 * x e5i4,
+     x e5i1 * x e5i3,
+     x e5i1 * x e5i2,
+     x e5i0 * x e5i4,
+     x e5i0 * x e5i3,
+     x e5i0 * x e5i2,
+     x e5i0 * x e5i1] : Fin 14 → ℝ) r
 
 /-- Nonnegative rational weights for `gegenbauer5Degree2Feature`. -/
 def gegenbauer5Degree2Weight : Fin 14 → ℝ :=
@@ -45,8 +54,8 @@ theorem gegenbauer5Degree2_featureIdentity (x y : Euclidean5) :
       (5 / 4 : ℝ) * (∑ i, x i * y i) ^ 2 -
         (1 / 4 : ℝ) * (∑ i, x i ^ 2) * (∑ i, y i ^ 2) := by
   norm_num [gegenbauer5Degree2Weight, gegenbauer5Degree2Feature,
-    Fin.sum_univ_succ]
-  ring
+    e5i0, e5i1, e5i2, e5i3, e5i4, Fin.sum_univ_succ]
+  ring_nf
 
 /-- Closed form of the exact normalized degree-two Gegenbauer polynomial for
 ambient dimension five. -/
@@ -65,7 +74,10 @@ theorem normalizedGegenbauer5Degree2_kernelEq
         gegenbauer5Degree2Feature r x * gegenbauer5Degree2Feature r y := by
   have hInner : ⟪x, y⟫_ℝ = ∑ i, x i * y i := by
     rw [PiLp.inner_apply]
+    apply Finset.sum_congr rfl
+    intro i hi
     simp
+    ring
   have hxSq : (∑ i, x i ^ 2) = (1 : ℝ) := by
     rw [← EuclideanSpace.real_norm_sq_eq]
     rw [hx]
@@ -97,5 +109,7 @@ theorem normalizedGegenbauer5Degree2_positive {ι : Type*} [Fintype ι]
   intro i j
   exact (normalizedGegenbauer5Degree2_kernelEq
     (C.point i) (C.point j) (C.unit_norm i) (C.unit_norm j)).symm
+
+end
 
 end R008
