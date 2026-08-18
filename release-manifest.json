@@ -2,18 +2,22 @@
   "release": "R008",
   "generatedFromBaseCommit": "275dfb85cd4e13f974057ceedbee1bcdbcb1b79a",
   "sha256": {
-    "README.md": "4867844f2fe4571fc3aa8e9fc0953963d7e5a053bd4b5b7a32a514c5e6e3728c",
-    "THEOREM.md": "d4ee40fb9bc4d348a479cd08012b2c86304166f66376514bc567f0174960b331",
-    "claim.json": "518e49bbb667a9e251c80c554cbb8384d683d34e2e6e4f0f6ab45c2476ab502f",
+    "README.md": "0ce1fc48ed176d4182c52e5edb6154432785f958cb181fe8fff3137ca0ade44e",
+    "THEOREM.md": "e82a1a1a016820ffae2782893f009f7073ced0e0ab702ead8341ca0309b223d5",
+    "claim.json": "a25d80b6cb063767d880cffc416e9ec6dd4b7c8d5650f4fa07bf342f91a2aeb9",
     "STATEMENT_AUDIT.md": "a573d2682df81ee02a8d58c15b2f69fddd37f8e9bdea5d2018a4d2a2c2006c84",
-    "VERIFICATION.md": "a586147ccb5f7145608715bcb97349ac5e3fb24af8fd2f580f8ed6b0405f7acf",
+    "VERIFICATION.md": "6315f4e68a144558350adf423ac4df757b657b24a43d959d690e8c1e82cfd364",
     "SOURCE_AUDIT.md": "71d1524b7261a2bf6e4f8c570c1809d2cad496553f5a9675359e36d2759288e6",
+    "verifier.py": "9c5bf9b32d2ad513043e9adc70bd8b3cdb536b8f84cfc73a566e85d2eefd154b",
     "independent_verifier.py": "ad8ddff739c402df44f08f002c4ee1f18a338372fd520659c3b50c686105fbc1",
-    "verify_release.py": "dde767c2d26bc6f406f1416169c8738861d859dfa11905174b00bdd02203c95b",
+    "verify_release.py": "98087642121d5a1ebce966ee555e8e0ccb4abbca413150a4327be30ba4a33ab9",
+    "requirements.txt": "25f9f1fb1988b230147a1d3092d34e09c069eb7a6c6d6df46b3973b9f2d36efc",
     "CITATION.cff": "e94f4c2e4fc775626b3cacf8ceacd63cbb50dfcd5298f39936ae54273e7c8158",
+    "Makefile": "592b7ba34f5ccdac3c5ae2d35fb2b4cffa18e74fae6b343b0faa60e72056a112",
+    ".github/workflows/verify.yml": "be3398bf120989bcba4b4f84fd326007d6247da5d6df42f51e2b32b87cd5f42f",
+    "manuscript/README.md": "b5df9eda6bea24bef5696d9690dc21328706162ea193cdb6b79950ed30e227b5",
     "manuscript/r008_far_pair_constraints.tex": "31c4f0d59424bcf83b0ca773846b09430ed3f0024e36a8b45e467663a50b8789",
     "manuscript/references.bib": "803f953fd91fdbe0836d404b76eb60c3897da61a53a6c5c041fe6fcee97f1fe5",
-    "manuscript/r008_far_pair_constraints.pdf": "cc0c2fd756d7db5dd3b23aa064c84a4e35abab7874d4d79b285a1d4e05081c7d",
-    "manuscript/build-metadata.json": "88fc64f1137724662fa60e90aee9e89cb2c7b118aa880e072a9aff47f2aa3585"
+    "manuscript/build-metadata.json": "96aabaf6f926162b8b0aa87e92eaae960ea8e04c968a3b6be91ebe82b1b8702d"
   }
 }
