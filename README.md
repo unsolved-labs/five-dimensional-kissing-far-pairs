@@ -48,7 +48,8 @@ geometrically separated system of unusually far-apart pairs.
 
 The exact theorem and proof are available in two forms:
 
-- [research manuscript](manuscript/r008_far_pair_constraints.pdf);
+- [research manuscript source](manuscript/r008_far_pair_constraints.tex), with a
+  reproducible PDF built by CI and `make manuscript`;
 - [GitHub-rendered theorem and proof](THEOREM.md).
 
 ## Verification
@@ -85,7 +86,7 @@ See [`VERIFICATION.md`](VERIFICATION.md) for the precise trust boundary and
 ## Repository structure
 
 - [`manuscript/`](manuscript/) — LaTeX source, references, build instructions,
-  and reproducible PDF.
+  and reference-build metadata; CI publishes the compiled PDF as an artifact.
 - [`THEOREM.md`](THEOREM.md) — complete GitHub-readable theorem and proof.
 - [`claim.json`](claim.json) — machine-readable frozen claim and scope.
 - [`STATEMENT_AUDIT.md`](STATEMENT_AUDIT.md) — claim-to-proof/checker mapping.
