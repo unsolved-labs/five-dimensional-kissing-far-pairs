@@ -1,0 +1,88 @@
+{
+  "release": "R008",
+  "status": "local formalization development",
+  "obligations": [
+    {
+      "id": "C0",
+      "title": "Finite Bernstein certificate data integrity",
+      "dependsOn": [],
+      "localWork": "implemented",
+      "target": "R008.CertificateCheck.generatedCertificateData_valid",
+      "acceptance": "compiles by kernel decide; no native_decide"
+    },
+    {
+      "id": "C1",
+      "title": "Bernstein weighted-sum sign theorem",
+      "dependsOn": [],
+      "localWork": "source implemented",
+      "target": "R008.weightedBernstein_strictly_negative / strictly_positive",
+      "acceptance": "compiles against Mathlib Bernstein nonnegativity and partition of unity"
+    },
+    {
+      "id": "C2",
+      "title": "Power-to-Bernstein evaluation bridge",
+      "dependsOn": ["C0", "C1"],
+      "localWork": "generated piece-specific Lean identities, coefficient bounds, interval transport, and five global sign theorems prepared; build pending",
+      "acceptance": "all 48 exact Bernstein pieces compile and yield the five manuscript interval signs",
+      "target": "R008.GeneratedProofs.allR008IntervalSigns"
+    },
+    {
+      "id": "D0",
+      "title": "Normalized Gegenbauer polynomial recurrence",
+      "dependsOn": [],
+      "localWork": "Lean recurrence/normalization source plus 11 exact reference polynomials generated and independently verified; recurrence-to-reference proofs/build pending",
+      "acceptance": "Lean polynomials agree with all published R008 power coefficients",
+      "target": "R008.normalizedGegenbauer and exact identities against R008.Generated.GegenbauerReference"
+    },
+    {
+      "id": "D1",
+      "title": "Spherical Gegenbauer positive definiteness",
+      "dependsOn": ["D0"],
+      "localWork": "feature-map/tensor and fixed-dimension SOS strategies specified in GEGENBAUER_FORMALIZATION_STRATEGY.md",
+      "acceptance": "finite weighted kernel sum nonnegative for unit vectors; no axiom placeholder"
+    },
+    {
+      "id": "D2",
+      "title": "Generic edge-count Delsarte lemma",
+      "dependsOn": ["C2", "D1"],
+      "localWork": "arithmetic core implemented",
+      "acceptance": "derives strong >=2 and moderate >=10 from exact certificates"
+    },
+    {
+      "id": "L0",
+      "title": "Neighbor projection and local S3 code bound",
+      "dependsOn": ["C2", "D1"],
+      "localWork": "paper proof audited; Lean implementation pending",
+      "acceptance": "derives moderate far-graph maximum degree <=9"
+    },
+    {
+      "id": "G0",
+      "title": "Triangle-free and matching deductions",
+      "dependsOn": ["D2", "L0"],
+      "localWork": "generic pairwise-intersecting triangle-free relation -> star theorem and non-star -> disjoint edges theorem source prepared; R008 counting and strong-edge case remain",
+      "acceptance": "produces a moderate matching and a strong edge disjoint from a moderate edge",
+      "target": "R008.star_of_pairwise_intersecting_triangleFree and R008.exists_disjoint_edges_of_not_star, then R008-specific closure"
+    },
+    {
+      "id": "E0",
+      "title": "Difference-axis separation",
+      "dependsOn": ["G0"],
+      "localWork": "all exact rational side conditions formalized in R008.Numeric",
+      "acceptance": "proves absolute normalized axis inner product <779/1000"
+    },
+    {
+      "id": "G1",
+      "title": "Endpoint count and span",
+      "dependsOn": ["D2", "L0"],
+      "localWork": "proof blueprint complete",
+      "acceptance": "proves >=7 incident vertices and span dimension >=3"
+    },
+    {
+      "id": "F0",
+      "title": "Final R008 theorem",
+      "dependsOn": ["D2", "L0", "G0", "E0", "G1"],
+      "localWork": "statement crosswalk available",
+      "acceptance": "final declaration matches claim.json/manuscript, has no sorry, and #print axioms reports only intended foundational axioms"
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+name: Verify R008 Lean development
+
+on:
+  pull_request:
+    paths:
+      - 'R008/**'
+      - 'R008.lean'
+      - 'certificates/**'
+      - 'lakefile.toml'
+      - 'lake-manifest.json'
+      - 'lean-toolchain'
+      - 'formalization-draft.yaml'
+      - 'proof-obligations.json'
+      - '.github/workflows/lean.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'R008/**'
+      - 'R008.lean'
+      - 'certificates/**'
+      - 'lakefile.toml'
+      - 'lake-manifest.json'
+      - 'lean-toolchain'
+      - 'formalization-draft.yaml'
+      - 'proof-obligations.json'
+      - '.github/workflows/lean.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  exact-certificate-data:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Regenerate exact Bernstein and Gegenbauer artifacts
+        run: |
+          python certificates/generate_bernstein_certificates.py
+          python certificates/generate_lean_certificate_proofs.py
+          python certificates/generate_gegenbauer_reference.py
+      - name: Independently verify exact artifacts
+        run: |
+          python certificates/verify_bernstein_certificates.py
+          python certificates/verify_sturm_crosscheck.py
+          python certificates/verify_gegenbauer_reference.py
+      - name: Verify expected Bernstein certificate identity
+        run: |
+          python - <<'PY'
+          import hashlib, pathlib
+          p = pathlib.Path('certificates/bernstein_certificates.json')
+          got = hashlib.sha256(p.read_bytes()).hexdigest()
+          expected = '500ca358f1055da735e28d8f7998bebadca0abf7105c67046269c04e3628e55b'
+          assert got == expected, (got, expected)
+          print('R008 Bernstein certificate identity verified:', got)
+          PY
+
+  build:
+    runs-on: ubuntu-latest
+    needs: exact-certificate-data
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Materialize deterministic generated Lean sources
+        run: |
+          python certificates/generate_bernstein_certificates.py
+          python certificates/generate_lean_certificate_proofs.py
+          python certificates/generate_gegenbauer_reference.py
+      - uses: leanprover/lean-action@v1
+        with:
+          build: true
+          test: false
+          lint: false
+          use-mathlib-cache: true
+          build-args: '--wfail'
+          leanchecker: true
+          nanoda: true
+          nanoda-allow-sorry: false
+      - name: Reject proof placeholders and native-decision trust
+        run: |
+          if grep -RInE --include='*.lean' '^[[:space:]]*(by[[:space:]]+)?(sorry|admit|axiom|native_decide)\b' R008 R008.lean; then
+            echo 'Forbidden local axiom, proof placeholder, or native_decide found.' >&2
+            exit 1
+          fi
+      - name: Check staged entry point
+        run: lake env lean R008.lean
+      - name: Materialize verified generated sources and dependency lockfile
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        env:
+          HEAD_REF: ${{ github.head_ref }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add R008/Generated certificates/bernstein_certificates.json certificates/certificate_summary.json certificates/gegenbauer_reference.json certificates/gegenbauer_reference_summary.json lake-manifest.json
+          if git diff --cached --quiet; then
+            echo 'Generated formalization artifacts already materialized.'
+            exit 0
+          fi
+          git commit -m 'Materialize verified R008 Lean generated sources'
+          git push origin HEAD:"${HEAD_REF}"
