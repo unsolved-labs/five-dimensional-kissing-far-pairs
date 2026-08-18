@@ -5,5 +5,7 @@
     "r008_far_pair_constraints.tex": "31c4f0d59424bcf83b0ca773846b09430ed3f0024e36a8b45e467663a50b8789",
     "references.bib": "803f953fd91fdbe0836d404b76eb60c3897da61a53a6c5c041fe6fcee97f1fe5"
   },
-  "pdfSha256": "cc0c2fd756d7db5dd3b23aa064c84a4e35abab7874d4d79b285a1d4e05081c7d"
+  "referenceBuildToolchain": "pdfTeX 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian); latexmk 4.86",
+  "referencePdfSha256": "cc0c2fd756d7db5dd3b23aa064c84a4e35abab7874d4d79b285a1d4e05081c7d",
+  "hashPolicy": "source hashes are release-integrity checks; PDF hash identifies the reference build only and is not required across TeX versions"
 }
