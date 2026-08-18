@@ -14,8 +14,8 @@
     "requirements.txt": "25f9f1fb1988b230147a1d3092d34e09c069eb7a6c6d6df46b3973b9f2d36efc",
     "CITATION.cff": "e94f4c2e4fc775626b3cacf8ceacd63cbb50dfcd5298f39936ae54273e7c8158",
     "Makefile": "592b7ba34f5ccdac3c5ae2d35fb2b4cffa18e74fae6b343b0faa60e72056a112",
-    ".github/workflows/verify.yml": "be3398bf120989bcba4b4f84fd326007d6247da5d6df42f51e2b32b87cd5f42f",
     "manuscript/README.md": "b5df9eda6bea24bef5696d9690dc21328706162ea193cdb6b79950ed30e227b5"
   },
-  "manuscriptHashes": "manuscript/build-metadata.json"
+  "manuscriptHashes": "manuscript/build-metadata.json",
+  "ciPolicy": "CI configuration is deliberately excluded from the frozen scientific-artifact hash ledger; verification commands and scientific artifacts are frozen separately."
 }
