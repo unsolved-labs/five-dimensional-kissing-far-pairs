@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+message: "If you use this research artifact, please cite it as below."
+title: "Five-dimensional kissing-code far-pair constraints"
+type: software
+authors:
+  - name: "Unsolved Labs"
+version: "R008"
+date-released: 2026-08-14
+repository-code: "https://github.com/unsolved-labs/five-dimensional-kissing-far-pairs"
+url: "https://unsolved-labs.github.io/results/r008-five-dimensional-kissing-far-pairs/"
+abstract: >-
+  Exact computer-assisted structural constraints on any hypothetical
+  41-point spherical code in S^4 with maximal inner product 1/2, including
+  two-scale far-pair counts, graph constraints, disjoint pairs, and a
+  difference-axis separation bound.
