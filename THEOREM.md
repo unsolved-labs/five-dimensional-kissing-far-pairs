@@ -1,7 +1,7 @@
 # Two-scale disjoint far-pair theorem in dimension five
 
 This file is the GitHub-readable proof companion to the
-[research manuscript](manuscript/r008_far_pair_constraints.pdf). The
+[research manuscript source](manuscript/r008_far_pair_constraints.tex). The
 machine-checked obligations are mapped in
 [`STATEMENT_AUDIT.md`](STATEMENT_AUDIT.md).
 
