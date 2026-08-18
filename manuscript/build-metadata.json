@@ -1,11 +1,11 @@
 {
   "sourceDateEpoch": 1786691080,
   "buildCommand": "SOURCE_DATE_EPOCH=1786691080 FORCE_SOURCE_DATE=1 latexmk -pdf -interaction=nonstopmode -halt-on-error r008_far_pair_constraints.tex",
-  "sourceSha256": {
-    "r008_far_pair_constraints.tex": "4c5842f006e5bb1067a925cbf086d88999a20ad00415b7bac227c89cf308d1fc",
-    "references.bib": "803f953fd91fdbe0836d404b76eb60c3897da61a53a6c5c041fe6fcee97f1fe5"
+  "sourceGitBlobSha": {
+    "r008_far_pair_constraints.tex": "f59c9f874b6be38b98a12db55bebba80b46e954d",
+    "references.bib": "104e40068b7dc992fe0bb21193039154f1ae352d"
   },
-  "referenceBuildToolchain": "pdfTeX 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian); latexmk 4.86",
-  "referencePdfSha256": "cc0c2fd756d7db5dd3b23aa064c84a4e35abab7874d4d79b285a1d4e05081c7d",
-  "hashPolicy": "source hashes are release-integrity checks; PDF hash identifies the reference build only and is not required across TeX versions"
+  "ciReferenceEnvironment": "GitHub Actions ubuntu-24.04 with TeX Live 2023 packages installed by .github/workflows/verify.yml",
+  "pdfPolicy": "The public LaTeX source is canonical. CI must compile a valid PDF and publish it as a workflow artifact; PDF bytes are not required to be identical across TeX distributions.",
+  "hashPolicy": "Manuscript source integrity is checked by recomputing the content-addressed Git blob object ID from each file's bytes."
 }
